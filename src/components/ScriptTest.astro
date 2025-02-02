@@ -1,0 +1,37 @@
+---
+// Code inside frontmatter is typescript
+import { actions } from 'astro:actions';
+const lastName = 'Doe' as string;
+
+const { data } = await Astro.callAction(actions.company.getCompanyData, {});
+---
+<div>
+  <h1>Hello World</h1>
+  <p id="name"></p>
+  <p>{lastName}</p>
+  <p id="address"></p>
+  <p>Company name: {data?.name}</p>
+  <p>Company address: {data?.address}</p>
+  <p>Company phone: {data?.phone}</p>
+</div>
+
+<script>
+  // Code inside this tag is typescript
+  const getName = (): string => {
+    return 'John';
+  }
+
+  const name = getName();
+  const nameTag = document.getElementById('name') as HTMLParagraphElement;
+  nameTag.innerText = name;
+</script>
+
+<script is:inline>
+  // Code inside this tag is vanilla javascript
+  const getAddress = () => {
+    return '123 Main St, Anytown, USA';
+  }
+
+  const addressTag = document.getElementById('address');
+  addressTag.innerText = getAddress();
+</script>
