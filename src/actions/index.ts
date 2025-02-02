@@ -1,4 +1,9 @@
+// the following imports are from the astro runtime API and
+// are not found by eslint-plugin-import
 import { defineAction } from 'astro:actions';
+import { z } from 'astro:content';
+
+console.log(z);
 
 export const server = {
   company: {
